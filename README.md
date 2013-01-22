@@ -8,9 +8,7 @@ Note: There is no error output. I assume you have a general understanding of Sas
 
 - Of course you need a way to compile [Sass](http://sass-lang.com)
 - You should import Pilot before all other Sass files
-- Set the <code>font-size</code> of your <code>html</code> to 62.5%:
-
-Otherwise Pilot will miscalculate all rem values!
+- Set the <code>font-size</code> of your <code>html</code> to 62.5%. Otherwise Pilot will miscalculate all rem values!
 
 ## Constants
 
