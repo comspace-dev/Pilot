@@ -13,7 +13,7 @@ Note: There is no error output. I assume you have an advanced understanding of S
 
 Only edit the first two if you need to and do that in your custom stylesheet. The Pilot file remains untouched.
 
-## Fuctions
+## Functions
 
 ### stripZero
 
@@ -46,6 +46,14 @@ Example:
 		@include font-size(28, 2);
 	}
 
+Compiles to:
+
+	h1 {
+		font-size: 28px;
+		font-size: 2.8rem;
+		line-height: 1.71;
+	}
+
 ### shorthand
 
 	@mixin shorthand($property, $value1, $value2: false, $value3: false, $value4: false) {
@@ -75,6 +83,13 @@ Example:
 		@include shorthand(padding, 10, 20);
 	}
 
+Comiles to:
+
+	.box {
+		padding: 10px 20px;
+		padding: 1rem 2rem;
+	}
+
 ### leading
 
 	@mixin leading($value: $base-spacing-px, $property: margin, $side: top) {
@@ -88,6 +103,13 @@ Example:
 
 	li + li {
 		@include leading(20, margin, left);
+	}
+
+Compiles to:
+
+	li + li {
+		margin-left: 20px;
+		margin-left: 2rem;
 	}
 
 ### border
@@ -117,6 +139,14 @@ Example:
 		@include border(3, solid, top);
 	}
 
+Compiles to:
+
+	.alert {
+		border-top-width: 3px;
+		border-top-width: 0.3rem;
+		border-top-style: solid;
+	}
+
 ### box-shadow
 
 	@mixin box-shadow($h-off: 2, $v-off: 2, $blur: 4, $spread: 0, $color: rgba(0,0,0,0.5), $inset: false) {
@@ -125,7 +155,7 @@ Example:
 			box-shadow: stripZero($h-off / 10 + rem) stripZero($v-off / 10 + rem) stripZero($blur / 10 + rem) stripZero($spread / 10 + rem) $color inset;
 		}
 		@else {
-			box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px $color);
+			box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color;
 			box-shadow: stripZero($h-off / 10 + rem) stripZero($v-off / 10 + rem) stripZero($blur / 10 + rem) stripZero($spread / 10 + rem) $color;
 		}
 	}
@@ -136,6 +166,13 @@ Example:
 
 	.box {
 		@include box-shadow(3, 6, 10, 0, rgba(0,0,0,0.3) inset);
+	}
+
+Compiles to:
+
+	.box {
+		box-shadow: 3px 6px 10px 0 rgba(0, 0, 0, 0.3) inset;
+		box-shadow: 0.3rem 0.6rem 1rem 0 rgba(0, 0, 0, 0.3) inset;
 	}
 
 ### position
@@ -191,4 +228,14 @@ Example:
 
 	.logo {
 		@include position(absolute, 10, 20, false, false);
+	}
+
+Compiles to:
+
+	.logo {
+		position: absolute;
+		top: 10px;
+		top: 1rem;
+		right: 20px;
+		right: 2rem;
 	}
