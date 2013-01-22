@@ -1,0 +1,123 @@
+$base-font-size-px: 16 !default;
+$base-spacing-px: 24 !default;
+$base-font-size: $base-font-size-px / 10;
+$base-spacing: $base-spacing-px / 10;
+
+// Strips away the unit if zero
+@function stripZero($value) {
+	@if $value == "0px" or $value == "0rem" {
+		@return 0;
+	}
+	@else {
+		@return $value;
+	}
+}
+
+// Define line-height for a specific font-size based on the base-spacing. Accepts: font-size, multiple of base-spacing. Defaults: $base-font-size-px, 1.
+@mixin font-size($size: $base-font-size-px, $height: 1) {
+	font-size: stripZero($size + px);
+	font-size: stripZero($size / 10 + rem);
+	line-height: round($base-spacing * $height / $size * 10 * 100) / 100;
+}
+
+// Add four or less values for a specific property. Accepts: property, value one. Optional: value two, value three, value four. Defaults: none.
+@mixin shorthand($property, $value1, $value2: false, $value3: false, $value4: false) {
+	@if $value4 and ($value1 != 0 or $value2 != 0 or $value3 != 0 or $value4 != 0) {
+		#{$property}: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px) stripZero($value4 + px);
+		#{$property}: stripZero($value1 / 10 + rem) stripZero($value2 / 10 + rem) stripZero($value3 / 10 + rem) stripZero($value4 / 10 + rem);
+	}
+	@else if $value3 and ($value1 != 0 or $value2 != 0 or $value3 != 0) {
+		#{$property}: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px);
+		#{$property}: stripZero($value1 / 10 + rem) stripZero($value2 / 10 + rem) stripZero($value3 / 10 + rem);
+	}
+	@else if $value2 and ($value1 != 0 or $value2 != 0) {
+		#{$property}: stripZero($value1 + px) stripZero($value2 + px);
+		#{$property}: stripZero($value1 / 10 + rem) stripZero($value2 / 10 + rem);
+	}
+	@else if $value1 and $value1 != 0 {
+		#{$property}: stripZero($value1 + px);
+		#{$property}: stripZero($value1 / 10 + rem);
+	}
+}
+
+// Add leading space or space to a specific side. Accepts: value, property, side. Defaults: $base-spacing-px, margin.
+@mixin leading($value: $base-spacing-px, $property: margin, $side: top) {
+	#{$property}-#{$side}: stripZero($value + px);
+	#{$property}-#{$side}: stripZero($value / 10 + rem);
+}
+
+// Add a border to all sides or to a specific side. Accepts: value, style. Optional: side. Defaults: 1px, solid.
+@mixin border($value: 1, $style: solid, $side: false) {
+	@if not $side {
+		border: {
+			width: stripZero($value + px);
+			width: stripZero($value / 10 + rem);
+			style: $style;
+		}
+	}
+	@else {
+		border-#{$side}: {
+			width: stripZero($value + px);
+			width: stripZero($value / 10 + rem);
+			style: $style;
+		}
+	}
+}
+
+// Add a box-shadow. Accepts: horizontal offset, vertical offset, blur, spread, color. Optional: inset. Defaults: 2px, 2px, 4px, 0, rgba(0,0,0,0.5), false.
+@mixin box-shadow($h-off: 2, $v-off: 2, $blur: 4, $spread: 0, $color: rgba(0,0,0,0.5), $inset: false) {
+	@if $inset {
+		box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color inset;
+		box-shadow: stripZero($h-off / 10 + rem) stripZero($v-off / 10 + rem) stripZero($blur / 10 + rem) stripZero($spread / 10 + rem) $color inset;
+	}
+	@else {
+		box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px $color);
+		box-shadow: stripZero($h-off / 10 + rem) stripZero($v-off / 10 + rem) stripZero($blur / 10 + rem) stripZero($spread / 10 + rem) $color;
+	}
+}
+
+// Change the position of an element providing up to four coordinates. Accepts: type, coordinates. Defaults: none.
+@mixin position($type, $coords) {
+	$top: nth($coords, 1);
+	$right: nth($coords, 2);
+	$bottom: nth($coords, 3);
+	$left: nth($coords, 4);
+
+	position: $type;
+	@if $top {
+		@if $top == auto {
+			top: $top;
+		}
+		@else {
+			top: stripZero($top + px);
+			top: stripZero($top / 10 + rem);
+		}
+	}
+	@if $right {
+		@if $right == auto {
+			right: $right;
+		}
+		@else {
+			right: stripZero($right + px);
+			right: stripZero($right / 10 + rem);
+		}
+	}
+	@if $bottom {
+		@if $bottom == auto {
+			bottom: $bottom;
+		}
+		@else {
+			bottom: stripZero($bottom + px);
+			bottom: stripZero($bottom / 10 + rem);
+		}
+	}
+	@if $left {
+		@if $left == auto {
+			left: $left;
+		}
+		@else {
+			left: stripZero($left + px);
+			left: stripZero($left / 10 + rem);
+		}
+	}
+}
