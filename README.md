@@ -2,7 +2,15 @@
 
 A mixin library for Sass providing values in px and rem.
 
-Note: There is no error output. I assume you have an advanced understanding of Sass and CSS as well.
+Note: There is no error output. I assume you have a general understanding of Sass and CSS as well.
+
+## Requirements
+
+- Of course you need a way to compile [Sass](http://sass-lang.com)
+- You should import Pilot before all other Sass files
+- Set the <code>font-size</code> of your <code>html</code> to 62.5%:
+
+Otherwise Pilot will miscalculate all rem values!
 
 ## Constants
 
