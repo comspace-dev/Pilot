@@ -1,3 +1,8 @@
+// This font-size is necessary for correct rem calculations. Do not change or overwrite it at any point.
+html {
+	font-size: 62.5%;
+}
+
 $base-font-size-px: 16 !default;
 $base-spacing-px: 24 !default;
 $base-font-size: $base-font-size-px / 10;
