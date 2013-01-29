@@ -155,7 +155,7 @@ Compiles to:
 
 ### box-shadow
 
-	@mixin box-shadow($h-off: 2, $v-off: 2, $blur: 4, $spread: 0, $color: rgba(0,0,0,0.5), $inset: false) {
+	@mixin box-shadow($h-off: 2, $v-off: 2, $blur: 4, $spread: 0, $color: rgba(0, 0, 0, 0.5), $inset: false) {
 		@if $inset {
 			box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color inset;
 			box-shadow: stripZero($h-off / 10 + rem) stripZero($v-off / 10 + rem) stripZero($blur / 10 + rem) stripZero($spread / 10 + rem) $color inset;
@@ -171,7 +171,7 @@ This mixin sets your desired <code>box-shadow</code>. By default the output woul
 Example:
 
 	.box {
-		@include box-shadow(3, 6, 10, 0, rgba(0,0,0,0.3) inset);
+		@include box-shadow(3, 6, 10, 0, rgba(0, 0, 0, 0.3) inset);
 	}
 
 Compiles to:
