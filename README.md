@@ -181,6 +181,28 @@ Compiles to:
 		box-shadow: 0.3rem 0.6rem 1rem 0 rgba(0, 0, 0, 0.3) inset;
 	}
 
+### text-shadow
+
+	@mixin text-shadow($h-off: 1, $v-off: 1, $blur: 2, $color: rgba(0, 0, 0, 0.5)) {
+		text-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) $color;
+		text-shadow: stripZero($h-off / 10 + rem) stripZero($v-off / 10 + rem) stripZero($blur / 10 + rem) $color;
+	}
+
+This mixin sets your desired <code>text-shadow</code>. By default the output would be a <code>text-shadow</code> with 1px offset, and a 2px blur of 50% black.
+
+Example:
+
+	h1 {
+		@include text-shadow(2, 2, 0, rgba(0, 0, 0, 0.75));
+	}
+
+Compiles to:
+
+	h1 {
+		text-shadow: 2px 2px 0 rgba(0, 0, 0, 0.75);
+		text-shadow: 0.2rem 0.2rem 0 rgba(0, 0, 0, 0.75);
+	}
+
 ### position
 
 	@mixin position($type, $coords) {
