@@ -1,12 +1,12 @@
-// This font-size is necessary for correct rem calculations. Do not change or overwrite it at any point.
-html {
-	font-size: 62.5%;
-}
-
 $base-font-size-px: 16 !default;
 $base-spacing-px: 24 !default;
 $base-font-size: $base-font-size-px / 10;
 $base-spacing: $base-spacing-px / 10;
+
+// This font-size is necessary for correct rem calculations. Do not change or overwrite it at any point.
+html {
+	font-size: 62.5%;
+}
 
 // Strips away the unit if zero
 @function stripZero($value) {
@@ -70,7 +70,7 @@ $base-spacing: $base-spacing-px / 10;
 }
 
 // Add a box-shadow. Accepts: horizontal offset, vertical offset, blur, spread, color. Optional: inset. Defaults: 2px, 2px, 4px, 0, rgba(0,0,0,0.5), false.
-@mixin box-shadow($h-off: 2, $v-off: 2, $blur: 4, $spread: 0, $color: rgba(0,0,0,0.5), $inset: false) {
+@mixin box-shadow($h-off: 2, $v-off: 2, $blur: 4, $spread: 0, $color: rgba(0, 0, 0, 0.5), $inset: false) {
 	@if $inset {
 		box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color inset;
 		box-shadow: stripZero($h-off / 10 + rem) stripZero($v-off / 10 + rem) stripZero($blur / 10 + rem) stripZero($spread / 10 + rem) $color inset;
@@ -79,6 +79,12 @@ $base-spacing: $base-spacing-px / 10;
 		box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color;
 		box-shadow: stripZero($h-off / 10 + rem) stripZero($v-off / 10 + rem) stripZero($blur / 10 + rem) stripZero($spread / 10 + rem) $color;
 	}
+}
+
+// Add a text-shadow. Accepts: horizontal offset, vertical offset, blur, color. Defaults: 1px, 1px, 2px, rgba(0,0,0,0.5).
+@mixin text-shadow($h-off: 1, $v-off: 1, $blur: 2, $color: rgba(0, 0, 0, 0.5)) {
+	text-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) $color;
+	text-shadow: stripZero($h-off / 10 + rem) stripZero($v-off / 10 + rem) stripZero($blur / 10 + rem) $color;
 }
 
 // Change the position of an element providing up to four coordinates. Accepts: type, coordinates. Defaults: none.
