@@ -18,7 +18,12 @@ $base-spacing: $base-spacing-px / 16;
 @mixin font-size($size: $base-font-size-px, $height: 1) {
 	font-size: stripZero($size + px);
 	font-size: stripZero($size / 16 + rem);
-	line-height: ceil($base-spacing * $height / $size * 16 * 100000) / 100000;
+	@if $height == "normal" {
+		line-height: normal;
+	}
+	@else {
+		line-height: ceil($base-spacing * $height / $size * 16 * 100000) / 100000;
+	}
 }
 
 // Add four or less values for a specific property. Accepts: property, value one. Optional: value two, value three, value four. Defaults: none.
