@@ -8,14 +8,13 @@ Note: There is no error output. I assume you have a general understanding of Sas
 
 - Of course you need a way to compile [Sass](http://sass-lang.com)
 - You should import Pilot before all other Sass files
-- Set the <code>font-size</code> of your <code>html</code> to nothing else than 62.5%. Otherwise Pilot will miscalculate all rem values! Pilot sets this value for you, so you don't need to.
 
 ## Constants
 
 	$base-font-size-px: 16 !default;
 	$base-spacing-px: 24 !default;
-	$base-font-size: $base-font-size-px / 10;
-	$base-spacing: $base-spacing-px / 10;
+	$base-font-size: $base-font-size-px / 16;
+	$base-spacing: $base-spacing-px / 16;
 
 Only edit the first two if you need to and do that in your custom stylesheet. The Pilot file remains untouched.
 
@@ -40,8 +39,8 @@ This function is used to strip away the unit if the value is zero.
 
 	@mixin font-size($size: $base-font-size-px, $height: 1) {
 		font-size: stripZero($size + px);
-		font-size: stripZero($size / 10 + rem);
-		line-height: round($base-spacing * $height / $size * 10 * 100) / 100;
+		font-size: stripZero($size / 16 + rem);
+		line-height: round($base-spacing * $height / $size * 16 * 100) / 100;
 	}
 
 Pass your desired <code>font-size</code> and a multiple of the <code>$base-spacing-px</code> and the <code>line-height</code> will be calculated accordingly.
@@ -65,19 +64,19 @@ Compiles to:
 	@mixin shorthand($property, $value1, $value2: false, $value3: false, $value4: false) {
 		@if $value4 and ($value1 != 0 or $value2 != 0 or $value3 != 0 or $value4 != 0) {
 			#{$property}: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px) stripZero($value4 + px);
-			#{$property}: stripZero($value1 / 10 + rem) stripZero($value2 / 10 + rem) stripZero($value3 / 10 + rem) stripZero($value4 / 10 + rem);
+			#{$property}: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem) stripZero($value4 / 16 + rem);
 		}
 		@else if $value3 and ($value1 != 0 or $value2 != 0 or $value3 != 0) {
 			#{$property}: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px);
-			#{$property}: stripZero($value1 / 10 + rem) stripZero($value2 / 10 + rem) stripZero($value3 / 10 + rem);
+			#{$property}: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem);
 		}
 		@else if $value2 and ($value1 != 0 or $value2 != 0) {
 			#{$property}: stripZero($value1 + px) stripZero($value2 + px);
-			#{$property}: stripZero($value1 / 10 + rem) stripZero($value2 / 10 + rem);
+			#{$property}: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem);
 		}
 		@else if $value1 and $value1 != 0 {
 			#{$property}: stripZero($value1 + px);
-			#{$property}: stripZero($value1 / 10 + rem);
+			#{$property}: stripZero($value1 / 16 + rem);
 		}
 	}
 
@@ -100,7 +99,7 @@ Comiles to:
 
 	@mixin leading($value: $base-spacing-px, $property: margin, $side: top) {
 		#{$property}-#{$side}: stripZero($value + px);
-		#{$property}-#{$side}: stripZero($value / 10 + rem);
+		#{$property}-#{$side}: stripZero($value / 16 + rem);
 	}
 
 By default this mixin adds leading <code>margin</code> with the value of <code>$base-spacing-px</code>. You can modify the value to be <code>padding</code> and the side to right, bottom, or left.
@@ -124,14 +123,14 @@ Compiles to:
 		@if not $side {
 			border: {
 				width: stripZero($value + px);
-				width: stripZero($value / 10 + rem);
+				width: stripZero($value / 16 + rem);
 				style: $style;
 			}
 		}
 		@else {
 			border-#{$side}: {
 				width: stripZero($value + px);
-				width: stripZero($value / 10 + rem);
+				width: stripZero($value / 16 + rem);
 				style: $style;
 			}
 		}
@@ -158,11 +157,11 @@ Compiles to:
 	@mixin box-shadow($h-off: 2, $v-off: 2, $blur: 4, $spread: 0, $color: rgba(0, 0, 0, 0.5), $inset: false) {
 		@if $inset {
 			box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color inset;
-			box-shadow: stripZero($h-off / 10 + rem) stripZero($v-off / 10 + rem) stripZero($blur / 10 + rem) stripZero($spread / 10 + rem) $color inset;
+			box-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) stripZero($spread / 16 + rem) $color inset;
 		}
 		@else {
 			box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color;
-			box-shadow: stripZero($h-off / 10 + rem) stripZero($v-off / 10 + rem) stripZero($blur / 10 + rem) stripZero($spread / 10 + rem) $color;
+			box-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) stripZero($spread / 16 + rem) $color;
 		}
 	}
 
@@ -185,7 +184,7 @@ Compiles to:
 
 	@mixin text-shadow($h-off: 1, $v-off: 1, $blur: 2, $color: rgba(0, 0, 0, 0.5)) {
 		text-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) $color;
-		text-shadow: stripZero($h-off / 10 + rem) stripZero($v-off / 10 + rem) stripZero($blur / 10 + rem) $color;
+		text-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) $color;
 	}
 
 This mixin sets your desired <code>text-shadow</code>. By default the output would be a <code>text-shadow</code> with 1px offset, and a 2px blur of 50% black.
@@ -218,7 +217,7 @@ Compiles to:
 			}
 			@else {
 				top: stripZero($top + px);
-				top: stripZero($top / 10 + rem);
+				top: stripZero($top / 16 + rem);
 			}
 		}
 		@if $right {
@@ -227,7 +226,7 @@ Compiles to:
 			}
 			@else {
 				right: stripZero($right + px);
-				right: stripZero($right / 10 + rem);
+				right: stripZero($right / 16 + rem);
 			}
 		}
 		@if $bottom {
@@ -236,7 +235,7 @@ Compiles to:
 			}
 			@else {
 				bottom: stripZero($bottom + px);
-				bottom: stripZero($bottom / 10 + rem);
+				bottom: stripZero($bottom / 16 + rem);
 			}
 		}
 		@if $left {
@@ -245,7 +244,7 @@ Compiles to:
 			}
 			@else {
 				left: stripZero($left + px);
-				left: stripZero($left / 10 + rem);
+				left: stripZero($left / 16 + rem);
 			}
 		}
 	}
