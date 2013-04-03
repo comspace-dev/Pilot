@@ -70,7 +70,7 @@ $base-spacing: $base-spacing-px / 16;
 	}
 }
 
-// Add a box-shadow. Accepts: horizontal offset, vertical offset, blur, spread, color. Optional: inset. Defaults: 2px, 2px, 4px, 0, rgba(0,0,0,0.5), false.
+// Add a box-shadow. Accepts: horizontal offset, vertical offset, blur, spread, color. Optional: inset. Defaults: 2px, 2px, 4px, 0, rgba(0, 0, 0, 0.5), false.
 @mixin box-shadow($h-off: 2, $v-off: 2, $blur: 4, $spread: 0, $color: rgba(0, 0, 0, 0.5), $inset: false) {
 	@if $inset {
 		box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color inset;
@@ -82,7 +82,7 @@ $base-spacing: $base-spacing-px / 16;
 	}
 }
 
-// Add a text-shadow. Accepts: horizontal offset, vertical offset, blur, color. Defaults: 1px, 1px, 2px, rgba(0,0,0,0.5).
+// Add a text-shadow. Accepts: horizontal offset, vertical offset, blur, color. Defaults: 1px, 1px, 2px, rgba(0, 0, 0, 0.5).
 @mixin text-shadow($h-off: 1, $v-off: 1, $blur: 2, $color: rgba(0, 0, 0, 0.5)) {
 	text-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) $color;
 	text-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) $color;
