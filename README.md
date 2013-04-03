@@ -40,7 +40,7 @@ This function is used to strip away the unit if the value is zero.
 	@mixin font-size($size: $base-font-size-px, $height: 1) {
 		font-size: stripZero($size + px);
 		font-size: stripZero($size / 16 + rem);
-		line-height: round($base-spacing * $height / $size * 16 * 100) / 100;
+		line-height: ceil($base-spacing * $height / $size * 16 * 100000) / 100000;
 	}
 
 Pass your desired <code>font-size</code> and a multiple of the <code>$base-spacing-px</code> and the <code>line-height</code> will be calculated accordingly.
