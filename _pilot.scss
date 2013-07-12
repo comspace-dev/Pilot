@@ -1,10 +1,10 @@
-// Constants needed for calculations.
+// constants needed for calculations.
 $base-font-size-px: 16 !default;
 $base-spacing-px: 24 !default;
 $base-font-size: $base-font-size-px / 16;
 $base-spacing: $base-spacing-px / 16;
 
-// Strips away the unit if zero
+// strips away the unit if zero
 @function stripZero($value) {
 	@if $value == "0px" or $value == "0rem" {
 		@return 0;
@@ -14,7 +14,7 @@ $base-spacing: $base-spacing-px / 16;
 	}
 }
 
-// Define line-height for a specific font-size based on the base-spacing. Accepts: font-size, multiple of base-spacing. Defaults: $base-font-size-px, 1.
+// define line-height for a specific font-size based on the base-spacing. accepts: font-size, multiple of base-spacing. defaults: $base-font-size-px, 1.
 @mixin font-size($size: $base-font-size-px, $height: 1) {
 	font-size: stripZero($size + px);
 	font-size: stripZero($size / 16 + rem);
@@ -26,7 +26,7 @@ $base-spacing: $base-spacing-px / 16;
 	}
 }
 
-// Add four or less values for a specific property. Accepts: property, value one. Optional: value two, value three, value four. Defaults: none.
+// add four or less values for a specific property. accepts: property, value one. optional: value two, value three, value four. defaults: none.
 @mixin shorthand($property, $value1, $value2: false, $value3: false, $value4: false) {
 	@if $value4 and ($value1 != 0 or $value2 != 0 or $value3 != 0 or $value4 != 0) {
 		#{$property}: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px) stripZero($value4 + px);
@@ -46,13 +46,13 @@ $base-spacing: $base-spacing-px / 16;
 	}
 }
 
-// Add leading space or space to a specific side. Accepts: value, property, side. Defaults: $base-spacing-px, margin.
+// add leading space or space to a specific side. accepts: value, property, side. defaults: $base-spacing-px, margin.
 @mixin leading($value: $base-spacing-px, $property: margin, $side: top) {
 	#{$property}-#{$side}: stripZero($value + px);
 	#{$property}-#{$side}: stripZero($value / 16 + rem);
 }
 
-// Add a border to all sides or to a specific side. Accepts: value, style. Optional: side. Defaults: 1px, solid.
+// add a border to all sides or to a specific side. accepts: value, style. optional: side. defaults: 1px, solid.
 @mixin border($value: 1, $style: solid, $side: false) {
 	@if not $side {
 		border: {
@@ -70,7 +70,7 @@ $base-spacing: $base-spacing-px / 16;
 	}
 }
 
-// Add a box-shadow. Accepts: horizontal offset, vertical offset, blur, spread, color. Optional: inset. Defaults: 2px, 2px, 4px, 0, rgba(0, 0, 0, 0.5), false.
+// add a box-shadow. accepts: horizontal offset, vertical offset, blur, spread, color. optional: inset. defaults: 2px, 2px, 4px, 0, rgba(0, 0, 0, 0.5), false.
 @mixin box-shadow($h-off: 2, $v-off: 2, $blur: 4, $spread: 0, $color: rgba(0, 0, 0, 0.5), $inset: false) {
 	@if $inset {
 		box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color inset;
@@ -82,13 +82,13 @@ $base-spacing: $base-spacing-px / 16;
 	}
 }
 
-// Add a text-shadow. Accepts: horizontal offset, vertical offset, blur, color. Defaults: 1px, 1px, 2px, rgba(0, 0, 0, 0.5).
+// add a text-shadow. Accepts: horizontal offset, vertical offset, blur, color. defaults: 1px, 1px, 2px, rgba(0, 0, 0, 0.5).
 @mixin text-shadow($h-off: 1, $v-off: 1, $blur: 2, $color: rgba(0, 0, 0, 0.5)) {
 	text-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) $color;
 	text-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) $color;
 }
 
-// Change the position of an element providing up to four coordinates. Accepts: type, coordinates. Defaults: none.
+// change the position of an element providing up to four coordinates. accepts: type, coordinates. defaults: none.
 @mixin position($type, $coords) {
 	$top: nth($coords, 1);
 	$right: nth($coords, 2);
