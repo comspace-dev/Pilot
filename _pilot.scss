@@ -14,240 +14,343 @@ $base-spacing: $base-spacing-px / 16;
 	}
 }
 
-// to do
-
 /*
-margin
-margin-top
-margin-right
-margin-bottom
-margin-left
+index
 
-padding
-padding-top
-padding-right
-padding-bottom
-padding-left
+#margin
+#margin-top
+#margin-right
+#margin-bottom
+#margin-left
 
-border-radius
-border-top-right-radius
-border-bottom-right-radius
-border-bottom-left-radius
-border-top-left-radius
+#padding
+#padding-top
+#padding-right
+#padding-bottom
+#padding-left
 
-height
-min-height
-max-height
+#border-radius
+#border-top-right-radius
+#border-bottom-right-radius
+#border-bottom-left-radius
+#border-top-left-radius
 
-width
-min-width
-max-width
+#height
+#min-height
+#max-height
 
-position
+#width
+#min-width
+#max-width
 
-border
-border-top
-border-right
-border-bottom
-border-left
+#position
 
-font-size (mit line-height)
+#border
+#border-top
+#border-right
+#border-bottom
+#border-left
 
-letter-spacing
+#leading
+#leading--half
+#leading--quarter
 
-text-indent
+#font-size (mit line-height)
 
-box-shadow
+#letter-spacing
 
-text-shadow
+#text-indent
+
+#box-shadow
+
+#text-shadow
 */
 
-// all the mixins
-@mixin margin($value1, $value2: false, $value3: false, $value4: false) {
+// one mixin to rule them all
+@mixin _shorthand($property, $value1, $value2: false, $value3: false, $value4: false) {
 
 	@if $value4 and ($value1 != 0 or $value2 != 0 or $value3 != 0 or $value4 != 0) {
-		margin: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px) stripZero($value4 + px);
-		margin: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem) stripZero($value4 / 16 + rem);
-	}
 
-	@else if $value3 and ($value1 != 0 or $value2 != 0 or $value3 != 0) {
-		margin: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px);
-		margin: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem);
-	}
-
-	@else if $value2 and ($value1 != 0 or $value2 != 0) {
-		margin: stripZero($value1 + px) stripZero($value2 + px);
-		margin: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem);
-	}
-
-	@else if $value1 and $value1 != 0 {
-		margin: stripZero($value1 + px);
-		margin: stripZero($value1 / 16 + rem);
-	}
-}
-
-@mixin padding($value1, $value2: false, $value3: false, $value4: false) {
-
-	@if $value4 and ($value1 != 0 or $value2 != 0 or $value3 != 0 or $value4 != 0) {
-		padding: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px) stripZero($value4 + px);
-		padding: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem) stripZero($value4 / 16 + rem);
-	}
-
-	@else if $value3 and ($value1 != 0 or $value2 != 0 or $value3 != 0) {
-		padding: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px);
-		padding: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem);
-	}
-
-	@else if $value2 and ($value1 != 0 or $value2 != 0) {
-		padding: stripZero($value1 + px) stripZero($value2 + px);
-		padding: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem);
-	}
-
-	@else if $value1 and $value1 != 0 {
-		padding: stripZero($value1 + px);
-		padding: stripZero($value1 / 16 + rem);
-	}
-}
-
-@mixin border-radius($value1, $value2: false, $value3: false, $value4: false) {
-
-	@if $value4 and ($value1 != 0 or $value2 != 0 or $value3 != 0 or $value4 != 0) {
-		border-radius: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px) stripZero($value4 + px);
-		border-radius: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem) stripZero($value4 / 16 + rem);
-	}
-
-	@else if $value3 and ($value1 != 0 or $value2 != 0 or $value3 != 0) {
-		border-radius: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px);
-		border-radius: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem);
-	}
-
-	@else if $value2 and ($value1 != 0 or $value2 != 0) {
-		border-radius: stripZero($value1 + px) stripZero($value2 + px);
-		border-radius: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem);
-	}
-
-	@else if $value1 and $value1 != 0 {
-		border-radius: stripZero($value1 + px);
-		border-radius: stripZero($value1 / 16 + rem);
-	}
-}
-
-// define line-height for a specific font-size based on the base-spacing. accepts: font-size, multiple of base-spacing. defaults: $base-font-size-px, 1.
-@mixin font-size($size: $base-font-size-px, $height: 1) {
-	font-size: stripZero($size + px);
-	font-size: stripZero($size / 16 + rem);
-	@if $height == "normal" {
-		line-height: normal;
-	}
-	@else {
-		line-height: ceil($base-spacing * $height / $size * 16 * 100000) / 100000;
-	}
-}
-
-// add four or less values for a specific property. accepts: property, value one. optional: value two, value three, value four. defaults: none.
-@mixin shorthand($property, $value1, $value2: false, $value3: false, $value4: false) {
-	@if $value4 and ($value1 != 0 or $value2 != 0 or $value3 != 0 or $value4 != 0) {
 		#{$property}: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px) stripZero($value4 + px);
 		#{$property}: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem) stripZero($value4 / 16 + rem);
 	}
+
 	@else if $value3 and ($value1 != 0 or $value2 != 0 or $value3 != 0) {
+
 		#{$property}: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px);
 		#{$property}: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem);
 	}
+
 	@else if $value2 and ($value1 != 0 or $value2 != 0) {
+
 		#{$property}: stripZero($value1 + px) stripZero($value2 + px);
 		#{$property}: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem);
 	}
+
 	@else if $value1 and $value1 != 0 {
+
 		#{$property}: stripZero($value1 + px);
 		#{$property}: stripZero($value1 / 16 + rem);
 	}
 }
 
-// add leading space or space to a specific side. accepts: value, property, side. defaults: $base-spacing-px, margin.
-@mixin leading($value: $base-spacing-px, $property: margin, $side: top) {
-	#{$property}-#{$side}: stripZero($value + px);
-	#{$property}-#{$side}: stripZero($value / 16 + rem);
+// all the mixins
+@mixin margin($value1, $value2: false, $value3: false, $value4: false) {
+
+	@include _shorthand(margin, $value1, $value2, $value3, $value4);
 }
 
-// add a border to all sides or to a specific side. accepts: value, style. optional: side. defaults: 1px, solid.
-@mixin border($value: 1, $style: solid, $side: false) {
-	@if not $side {
-		border: {
-			width: stripZero($value + px);
-			width: stripZero($value / 16 + rem);
-			style: $style;
-		}
-	}
-	@else {
-		border-#{$side}: {
-			width: stripZero($value + px);
-			width: stripZero($value / 16 + rem);
-			style: $style;
-		}
-	}
+@mixin margin-top($value) {
+
+	@include _shorthand(margin-top, $value);
 }
 
-// add a box-shadow. accepts: horizontal offset, vertical offset, blur, spread, color. optional: inset. defaults: 2px, 2px, 4px, 0, rgba(0, 0, 0, 0.5), false.
-@mixin box-shadow($h-off: 2, $v-off: 2, $blur: 4, $spread: 0, $color: rgba(0, 0, 0, 0.5), $inset: false) {
-	@if $inset {
-		box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color inset;
-		box-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) stripZero($spread / 16 + rem) $color inset;
-	}
-	@else {
-		box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color;
-		box-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) stripZero($spread / 16 + rem) $color;
-	}
+@mixin margin-right($value) {
+
+	@include _shorthand(margin-right, $value);
 }
 
-// add a text-shadow. Accepts: horizontal offset, vertical offset, blur, color. defaults: 1px, 1px, 2px, rgba(0, 0, 0, 0.5).
-@mixin text-shadow($h-off: 1, $v-off: 1, $blur: 2, $color: rgba(0, 0, 0, 0.5)) {
-	text-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) $color;
-	text-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) $color;
+@mixin margin-bottom($value) {
+
+	@include _shorthand(margin-bottom, $value);
 }
 
-// change the position of an element providing up to four coordinates. accepts: type, coordinates. defaults: none.
+@mixin margin-left($value) {
+
+	@include _shorthand(margin-left, $value);
+}
+
+@mixin padding($value1, $value2: false, $value3: false, $value4: false) {
+
+	@include _shorthand(padding, $value1, $value2, $value3, $value4);
+}
+
+@mixin padding-top($value) {
+
+	@include _shorthand(padding-top, $value);
+}
+
+@mixin padding-right($value) {
+
+	@include _shorthand(padding-right, $value);
+}
+
+@mixin padding-bottom($value) {
+
+	@include _shorthand(padding-bottom, $value);
+}
+
+@mixin padding-left($value) {
+
+	@include _shorthand(padding-left, $value);
+}
+
+@mixin border-radius($value1, $value2: false, $value3: false, $value4: false) {
+
+	@include _shorthand(border-radius, $value1, $value2, $value3, $value4);
+}
+
+@mixin border-top-right-radius($value) {
+
+	@include _shorthand(border-top-right-radius, $value1, $value2, $value3, $value4);
+}
+
+@mixin border-bottom-right-radius($value) {
+
+	@include _shorthand(border-bottom-right-radius, $value1, $value2, $value3, $value4);
+}
+
+@mixin border-bottom-left-radius($value) {
+
+	@include _shorthand(border-bottom-left-radius, $value1, $value2, $value3, $value4);
+}
+
+@mixin border-top-left-radius($value) {
+
+	@include _shorthand(border-top-left-radius, $value1, $value2, $value3, $value4);
+}
+
+@mixin height($value) {
+
+	@include _shorthand(height, $value);
+}
+
+@mixin min-height($value) {
+
+	@include _shorthand(min-height, $value);
+}
+
+@mixin max-height($value) {
+
+	@include _shorthand(max-height, $value);
+}
+
+@mixin width($value) {
+
+	@include _shorthand(width, $value);
+}
+
+@mixin min-width($value) {
+
+	@include _shorthand(min-width, $value);
+}
+
+@mixin max-width($value) {
+
+	@include _shorthand(max-width, $value);
+}
+
 @mixin position($type, $coords) {
+
 	$top: nth($coords, 1);
 	$right: nth($coords, 2);
 	$bottom: nth($coords, 3);
 	$left: nth($coords, 4);
 
 	position: $type;
+
 	@if $top {
+
 		@if $top == auto {
+
 			top: $top;
 		}
+
 		@else {
+
 			top: stripZero($top + px);
 			top: stripZero($top / 16 + rem);
 		}
 	}
 	@if $right {
+
 		@if $right == auto {
+
 			right: $right;
 		}
+
 		@else {
+
 			right: stripZero($right + px);
 			right: stripZero($right / 16 + rem);
 		}
 	}
+
 	@if $bottom {
+
 		@if $bottom == auto {
+
 			bottom: $bottom;
 		}
+
 		@else {
+
 			bottom: stripZero($bottom + px);
 			bottom: stripZero($bottom / 16 + rem);
 		}
 	}
+
 	@if $left {
+
 		@if $left == auto {
+
 			left: $left;
 		}
+
 		@else {
+
 			left: stripZero($left + px);
 			left: stripZero($left / 16 + rem);
 		}
 	}
+}
+
+@mixin border($value: 1, $style: solid, $color: inherit) {
+
+		border: stripZero($value + px) $style $color;
+		border: stripZero($value / 16 + rem) $style $color;
+}
+
+@mixin border-top($value: 1, $style: solid, $color: inherit) {
+
+		border-top: stripZero($value + px) $style $color;
+		border-top: stripZero($value / 16 + rem) $style $color;
+}
+
+@mixin border-right($value: 1, $style: solid, $color: inherit) {
+
+		border-right: stripZero($value + px) $style $color;
+		border-right: stripZero($value / 16 + rem) $style $color;
+}
+
+@mixin border-bottom($value: 1, $style: solid, $color: inherit) {
+
+		border-bottom: stripZero($value + px) $style $color;
+		border-bottom: stripZero($value / 16 + rem) $style $color;
+}
+
+@mixin border-left($value: 1, $style: solid, $color: inherit) {
+
+		border-left: stripZero($value + px) $style $color;
+		border-left: stripZero($value / 16 + rem) $style $color;
+}
+
+@mixin leading() {
+
+	@include margin-top($base-spacing-px);
+}
+
+@mixin leading--half() {
+
+	@include margin-top($base-spacing-px / 2);
+}
+
+@mixin leading--quarter() {
+
+	@include margin-top($base-spacing-px / 4);
+}
+
+@mixin font-size($size: $base-font-size-px, $height: 1) {
+
+	font-size: stripZero($size + px);
+	font-size: stripZero($size / 16 + rem);
+
+	@if $height == "normal" {
+		line-height: normal;
+	}
+
+	@else {
+		line-height: ceil($base-spacing * $height / $size * 16 * 100000) / 100000;
+	}
+}
+
+@mixin letter-spacing($value) {
+
+	@include _shorthand(letter-spacing, $value);
+}
+
+@mixin text-indent($value) {
+
+	@include _shorthand(text-indent, $value);
+}
+
+@mixin box-shadow($h-off: 2, $v-off: 2, $blur: 4, $spread: 0, $color: rgba(0,0,0,0.5), $inset: false) {
+
+	@if $inset {
+
+		box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color inset;
+		box-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) stripZero($spread / 16 + rem) $color inset;
+	}
+
+	@else {
+
+		box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color;
+		box-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) stripZero($spread / 16 + rem) $color;
+	}
+}
+
+@mixin text-shadow($h-off: 1, $v-off: 1, $blur: 2, $color: rgba(0,0,0,0.5)) {
+
+	text-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) $color;
+	text-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) $color;
 }
