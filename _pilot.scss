@@ -14,6 +14,124 @@ $base-spacing: $base-spacing-px / 16;
 	}
 }
 
+// to do
+
+/*
+margin
+margin-top
+margin-right
+margin-bottom
+margin-left
+
+padding
+padding-top
+padding-right
+padding-bottom
+padding-left
+
+border-radius
+border-top-right-radius
+border-bottom-right-radius
+border-bottom-left-radius
+border-top-left-radius
+
+height
+min-height
+max-height
+
+width
+min-width
+max-width
+
+position
+
+border
+border-top
+border-right
+border-bottom
+border-left
+
+font-size (mit line-height)
+
+letter-spacing
+
+text-indent
+
+box-shadow
+
+text-shadow
+*/
+
+// all the mixins
+@mixin margin($value1, $value2: false, $value3: false, $value4: false) {
+
+	@if $value4 and ($value1 != 0 or $value2 != 0 or $value3 != 0 or $value4 != 0) {
+		margin: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px) stripZero($value4 + px);
+		margin: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem) stripZero($value4 / 16 + rem);
+	}
+
+	@else if $value3 and ($value1 != 0 or $value2 != 0 or $value3 != 0) {
+		margin: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px);
+		margin: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem);
+	}
+
+	@else if $value2 and ($value1 != 0 or $value2 != 0) {
+		margin: stripZero($value1 + px) stripZero($value2 + px);
+		margin: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem);
+	}
+
+	@else if $value1 and $value1 != 0 {
+		margin: stripZero($value1 + px);
+		margin: stripZero($value1 / 16 + rem);
+	}
+}
+
+@mixin padding($value1, $value2: false, $value3: false, $value4: false) {
+
+	@if $value4 and ($value1 != 0 or $value2 != 0 or $value3 != 0 or $value4 != 0) {
+		padding: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px) stripZero($value4 + px);
+		padding: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem) stripZero($value4 / 16 + rem);
+	}
+
+	@else if $value3 and ($value1 != 0 or $value2 != 0 or $value3 != 0) {
+		padding: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px);
+		padding: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem);
+	}
+
+	@else if $value2 and ($value1 != 0 or $value2 != 0) {
+		padding: stripZero($value1 + px) stripZero($value2 + px);
+		padding: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem);
+	}
+
+	@else if $value1 and $value1 != 0 {
+		padding: stripZero($value1 + px);
+		padding: stripZero($value1 / 16 + rem);
+	}
+}
+
+@mixin border-radius($value1, $value2: false, $value3: false, $value4: false) {
+
+	@if $value4 and ($value1 != 0 or $value2 != 0 or $value3 != 0 or $value4 != 0) {
+		border-radius: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px) stripZero($value4 + px);
+		border-radius: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem) stripZero($value4 / 16 + rem);
+	}
+
+	@else if $value3 and ($value1 != 0 or $value2 != 0 or $value3 != 0) {
+		border-radius: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px);
+		border-radius: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem);
+	}
+
+	@else if $value2 and ($value1 != 0 or $value2 != 0) {
+		border-radius: stripZero($value1 + px) stripZero($value2 + px);
+		border-radius: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem);
+	}
+
+	@else if $value1 and $value1 != 0 {
+		border-radius: stripZero($value1 + px);
+		border-radius: stripZero($value1 / 16 + rem);
+	}
+}
+
 // define line-height for a specific font-size based on the base-spacing. accepts: font-size, multiple of base-spacing. defaults: $base-font-size-px, 1.
 @mixin font-size($size: $base-font-size-px, $height: 1) {
 	font-size: stripZero($size + px);
