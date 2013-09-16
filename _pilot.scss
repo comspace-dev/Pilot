@@ -6,10 +6,14 @@ $base-spacing: $base-spacing-px / 16;
 
 // strips away the unit if zero
 @function stripZero($value) {
+
 	@if $value == "0px" or $value == "0rem" {
+
 		@return 0;
 	}
+
 	@else {
+
 		@return $value;
 	}
 }
@@ -316,10 +320,12 @@ index
 	font-size: stripZero($size / 16 + rem);
 
 	@if $height == "normal" {
+
 		line-height: normal;
 	}
 
 	@else {
+
 		line-height: ceil($base-spacing * $height / $size * 16 * 100000) / 100000;
 	}
 }
