@@ -5,7 +5,7 @@ $base-font-size: $base-font-size-px / 16;
 $base-spacing: $base-spacing-px / 16;
 
 // strips away the unit if zero
-@function stripZero($value) {
+@function _stripZero($value) {
 
 	@if $value == "0px" or $value == "0rem" {
 
@@ -47,7 +47,10 @@ index
 * min-width
 * max-width
 
-* position
+* top
+* right
+* bottom
+* left
 
 * border
 * border-top
@@ -59,7 +62,9 @@ index
 * leading--half
 * leading--quarter
 
-* font-size (mit line-height)
+* adjust-font-size
+* font-size
+* line-height
 
 * letter-spacing
 
@@ -76,26 +81,26 @@ index
 
 	@if $value4 and ($value1 != 0 or $value2 != 0 or $value3 != 0 or $value4 != 0) {
 
-		#{$property}: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px) stripZero($value4 + px);
-		#{$property}: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem) stripZero($value4 / 16 + rem);
+		#{$property}: _stripZero($value1 + px) _stripZero($value2 + px) _stripZero($value3 + px) _stripZero($value4 + px);
+		#{$property}: _stripZero($value1 / 16 + rem) _stripZero($value2 / 16 + rem) _stripZero($value3 / 16 + rem) _stripZero($value4 / 16 + rem);
 	}
 
 	@else if $value3 and ($value1 != 0 or $value2 != 0 or $value3 != 0) {
 
-		#{$property}: stripZero($value1 + px) stripZero($value2 + px) stripZero($value3 + px);
-		#{$property}: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem) stripZero($value3 / 16 + rem);
+		#{$property}: _stripZero($value1 + px) _stripZero($value2 + px) _stripZero($value3 + px);
+		#{$property}: _stripZero($value1 / 16 + rem) _stripZero($value2 / 16 + rem) _stripZero($value3 / 16 + rem);
 	}
 
 	@else if $value2 and ($value1 != 0 or $value2 != 0) {
 
-		#{$property}: stripZero($value1 + px) stripZero($value2 + px);
-		#{$property}: stripZero($value1 / 16 + rem) stripZero($value2 / 16 + rem);
+		#{$property}: _stripZero($value1 + px) _stripZero($value2 + px);
+		#{$property}: _stripZero($value1 / 16 + rem) _stripZero($value2 / 16 + rem);
 	}
 
 	@else if $value1 and $value1 != 0 {
 
-		#{$property}: stripZero($value1 + px);
-		#{$property}: stripZero($value1 / 16 + rem);
+		#{$property}: _stripZero($value1 + px);
+		#{$property}: _stripZero($value1 / 16 + rem);
 	}
 }
 
@@ -157,22 +162,22 @@ index
 
 @mixin border-top-right-radius($value) {
 
-	@include _shorthand(border-top-right-radius, $value1, $value2, $value3, $value4);
+	@include _shorthand(border-top-right-radius, $value);
 }
 
 @mixin border-bottom-right-radius($value) {
 
-	@include _shorthand(border-bottom-right-radius, $value1, $value2, $value3, $value4);
+	@include _shorthand(border-bottom-right-radius, $value);
 }
 
 @mixin border-bottom-left-radius($value) {
 
-	@include _shorthand(border-bottom-left-radius, $value1, $value2, $value3, $value4);
+	@include _shorthand(border-bottom-left-radius, $value);
 }
 
 @mixin border-top-left-radius($value) {
 
-	@include _shorthand(border-top-left-radius, $value1, $value2, $value3, $value4);
+	@include _shorthand(border-top-left-radius, $value);
 }
 
 @mixin height($value) {
@@ -205,99 +210,54 @@ index
 	@include _shorthand(max-width, $value);
 }
 
-@mixin position($type, $coords) {
+@mixin top($value) {
 
-	$top: nth($coords, 1);
-	$right: nth($coords, 2);
-	$bottom: nth($coords, 3);
-	$left: nth($coords, 4);
+	@include _shorthand(top, $value);
+}
 
-	position: $type;
+@mixin right($value) {
 
-	@if $top {
+	@include _shorthand(right, $value);
+}
 
-		@if $top == auto {
+@mixin bottom($value) {
 
-			top: $top;
-		}
+	@include _shorthand(bottom, $value);
+}
 
-		@else {
+@mixin left($value) {
 
-			top: stripZero($top + px);
-			top: stripZero($top / 16 + rem);
-		}
-	}
-	@if $right {
-
-		@if $right == auto {
-
-			right: $right;
-		}
-
-		@else {
-
-			right: stripZero($right + px);
-			right: stripZero($right / 16 + rem);
-		}
-	}
-
-	@if $bottom {
-
-		@if $bottom == auto {
-
-			bottom: $bottom;
-		}
-
-		@else {
-
-			bottom: stripZero($bottom + px);
-			bottom: stripZero($bottom / 16 + rem);
-		}
-	}
-
-	@if $left {
-
-		@if $left == auto {
-
-			left: $left;
-		}
-
-		@else {
-
-			left: stripZero($left + px);
-			left: stripZero($left / 16 + rem);
-		}
-	}
+	@include _shorthand(left, $value);
 }
 
 @mixin border($value: 1, $style: solid, $color: inherit) {
 
-		border: stripZero($value + px) $style $color;
-		border: stripZero($value / 16 + rem) $style $color;
+		border: _stripZero($value + px) $style $color;
+		border: _stripZero($value / 16 + rem) $style $color;
 }
 
 @mixin border-top($value: 1, $style: solid, $color: inherit) {
 
-		border-top: stripZero($value + px) $style $color;
-		border-top: stripZero($value / 16 + rem) $style $color;
+		border-top: _stripZero($value + px) $style $color;
+		border-top: _stripZero($value / 16 + rem) $style $color;
 }
 
 @mixin border-right($value: 1, $style: solid, $color: inherit) {
 
-		border-right: stripZero($value + px) $style $color;
-		border-right: stripZero($value / 16 + rem) $style $color;
+		border-right: _stripZero($value + px) $style $color;
+		border-right: _stripZero($value / 16 + rem) $style $color;
 }
 
 @mixin border-bottom($value: 1, $style: solid, $color: inherit) {
 
-		border-bottom: stripZero($value + px) $style $color;
-		border-bottom: stripZero($value / 16 + rem) $style $color;
+		border-bottom: _stripZero($value + px) $style $color;
+		border-bottom: _stripZero($value / 16 + rem) $style $color;
 }
 
 @mixin border-left($value: 1, $style: solid, $color: inherit) {
 
-		border-left: stripZero($value + px) $style $color;
-		border-left: stripZero($value / 16 + rem) $style $color;
+		border-left: _stripZero($value + px) $style $color;
+		border-left: _stripZero($value / 16 + rem) $style $color;
 }
 
 @mixin leading() {
@@ -315,10 +275,10 @@ index
 	@include margin-top($base-spacing-px / 4);
 }
 
-@mixin font-size($size: $base-font-size-px, $height: 1) {
+@mixin adjust-font-size($size: $base-font-size-px, $height: 1) {
 
-	font-size: stripZero($size + px);
-	font-size: stripZero($size / 16 + rem);
+	font-size: _stripZero($size + px);
+	font-size: _stripZero($size / 16 + rem);
 
 	@if $height == "normal" {
 
@@ -329,6 +289,16 @@ index
 
 		line-height: ceil($base-spacing * $height / $size * 16 * 100000) / 100000;
 	}
+}
+
+@mixin font-size($value) {
+
+	@include _shorthand(font-size, $value);
+}
+
+@mixin line-height($value) {
+
+	@include _shorthand(line-height, $value);
 }
 
 @mixin letter-spacing($value) {
@@ -345,19 +315,19 @@ index
 
 	@if $inset {
 
-		box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color inset;
-		box-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) stripZero($spread / 16 + rem) $color inset;
+		box-shadow: _stripZero($h-off + px) _stripZero($v-off + px) _stripZero($blur + px) _stripZero($spread + px) $color inset;
+		box-shadow: _stripZero($h-off / 16 + rem) _stripZero($v-off / 16 + rem) _stripZero($blur / 16 + rem) _stripZero($spread / 16 + rem) $color inset;
 	}
 
 	@else {
 
-		box-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) stripZero($spread + px) $color;
-		box-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) stripZero($spread / 16 + rem) $color;
+		box-shadow: _stripZero($h-off + px) _stripZero($v-off + px) _stripZero($blur + px) _stripZero($spread + px) $color;
+		box-shadow: _stripZero($h-off / 16 + rem) _stripZero($v-off / 16 + rem) _stripZero($blur / 16 + rem) _stripZero($spread / 16 + rem) $color;
 	}
 }
 
 @mixin text-shadow($h-off: 1, $v-off: 1, $blur: 2, $color: rgba(0,0,0,0.5)) {
 
-	text-shadow: stripZero($h-off + px) stripZero($v-off + px) stripZero($blur + px) $color;
-	text-shadow: stripZero($h-off / 16 + rem) stripZero($v-off / 16 + rem) stripZero($blur / 16 + rem) $color;
+	text-shadow: _stripZero($h-off + px) _stripZero($v-off + px) _stripZero($blur + px) $color;
+	text-shadow: _stripZero($h-off / 16 + rem) _stripZero($v-off / 16 + rem) _stripZero($blur / 16 + rem) $color;
 }
