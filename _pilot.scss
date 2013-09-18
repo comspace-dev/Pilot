@@ -232,56 +232,33 @@ index
 	@include _shorthand(left, $value);
 }
 
-@mixin _border($value, $style: solid, $color: inherit, $side: "") {
+@mixin _border($value, $style, $color, $side: "") {
 
-	@if $color != "inherit" {
-
-		border#{$side}: _stripZero($value + px) $style $color;
-		border#{$side}: _stripZero($value / 16 + rem) $style $color;
-	}
-
-	@else {
-
-		border#{$side}-width: _stripZero($value + px);
-		border#{$side}-width: _stripZero($value / 16 + rem);
-		border#{$side}-style: $style;
-		border#{$side}-color: $color;
-	}
+	border#{$side}: _stripZero($value + px) $style #{$color};
+	border#{$side}: _stripZero($value / 16 + rem) $style #{$color};
 }
 
-@mixin border($value, $style: solid, $color: "") {
+@mixin border($value: 1, $style: solid, $color: "") {
 
-	// @if $color != "inherit" {
-
-		border: _stripZero($value + px) $style $color;
-		border: _stripZero($value / 16 + rem) $style $color;
-	// }
-
-	// @else {
-
-	// 	border-width: _stripZero($value + px);
-	// 	border-width: _stripZero($value / 16 + rem);
-	// 	border-style: $style;
-	// 	border-color: $color;
-	// }
+	@include _border($value, $style, $color);
 }
 
-@mixin border-top($value, $style: solid, $color: inherit) {
+@mixin border-top($value: 1, $style: solid, $color: "") {
 
 	@include _border($value, $style, $color, "-top");
 }
 
-@mixin border-right($value, $style: solid, $color: inherit) {
+@mixin border-right($value: 1, $style: solid, $color: "") {
 
 	@include _border($value, $style, $color, "-right");
 }
 
-@mixin border-bottom($value, $style: solid, $color: inherit) {
+@mixin border-bottom($value: 1, $style: solid, $color: "") {
 
 	@include _border($value, $style, $color, "-bottom");
 }
 
-@mixin border-left($value, $style: solid, $color: inherit) {
+@mixin border-left($value: 1, $style: solid, $color: "") {
 
 	@include _border($value, $style, $color, "-left");
 }
