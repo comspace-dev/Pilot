@@ -1,4 +1,4 @@
-// v2.0
+// v2.0.1
 
 // constants needed for calculations.
 $base-font-size-px: 16 !default;
@@ -232,31 +232,42 @@ index
 	@include _shorthand(left, $value);
 }
 
-@mixin border($value: 1, $style: solid, $color: inherit) {
+@mixin border($value, $style: solid, $color: inherit) {
 
-	border: _stripZero($value + px) $style $color;
-	border: _stripZero($value / 16 + rem) $style $color;
+	@if $color != "inherit" {
+
+		border: _stripZero($value + px) $style $color;
+		border: _stripZero($value / 16 + rem) $style $color;
+	}
+
+	@else {
+
+		border-width: _stripZero($value + px);
+		border-width: _stripZero($value / 16 + rem);
+		border-style: $style;
+		border-color: $color;
+	}
 }
 
-@mixin border-top($value: 1, $style: solid, $color: inherit) {
+@mixin border-top($value, $style: solid, $color: inherit) {
 
 	border-top: _stripZero($value + px) $style $color;
 	border-top: _stripZero($value / 16 + rem) $style $color;
 }
 
-@mixin border-right($value: 1, $style: solid, $color: inherit) {
+@mixin border-right($value, $style: solid, $color: inherit) {
 
 	border-right: _stripZero($value + px) $style $color;
 	border-right: _stripZero($value / 16 + rem) $style $color;
 }
 
-@mixin border-bottom($value: 1, $style: solid, $color: inherit) {
+@mixin border-bottom($value, $style: solid, $color: inherit) {
 
 	border-bottom: _stripZero($value + px) $style $color;
 	border-bottom: _stripZero($value / 16 + rem) $style $color;
 }
 
-@mixin border-left($value: 1, $style: solid, $color: inherit) {
+@mixin border-left($value, $style: solid, $color: inherit) {
 
 	border-left: _stripZero($value + px) $style $color;
 	border-left: _stripZero($value / 16 + rem) $style $color;
@@ -281,16 +292,7 @@ index
 
 	font-size: _stripZero($size + px);
 	font-size: _stripZero($size / 16 + rem);
-
-	@if $height == "normal" {
-
-		line-height: normal;
-	}
-
-	@else {
-
-		line-height: ceil($base-spacing * $height / $size * 16 * 100000) / 100000;
-	}
+	line-height: ceil($base-spacing * $height / $size * 16 * 100000) / 100000;
 }
 
 @mixin font-size($value) {
