@@ -1,0 +1,13 @@
+// strips away the unit if zero
+@function _stripZero($value) {
+
+	@if $value == "0px" or $value == "0rem" {
+
+		@return 0;
+	}
+
+	@else {
+
+		@return $value;
+	}
+}
