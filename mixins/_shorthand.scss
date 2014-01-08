@@ -1,0 +1,27 @@
+// one mixin to rule them all
+@mixin _shorthand($property, $value1, $value2: false, $value3: false, $value4: false) {
+
+	@if $value4 and ($value1 != 0 or $value2 != 0 or $value3 != 0 or $value4 != 0) {
+
+		#{$property}: _stripZero($value1 + px) _stripZero($value2 + px) _stripZero($value3 + px) _stripZero($value4 + px);
+		#{$property}: _stripZero($value1 / 16 + rem) _stripZero($value2 / 16 + rem) _stripZero($value3 / 16 + rem) _stripZero($value4 / 16 + rem);
+	}
+
+	@else if $value3 and ($value1 != 0 or $value2 != 0 or $value3 != 0) {
+
+		#{$property}: _stripZero($value1 + px) _stripZero($value2 + px) _stripZero($value3 + px);
+		#{$property}: _stripZero($value1 / 16 + rem) _stripZero($value2 / 16 + rem) _stripZero($value3 / 16 + rem);
+	}
+
+	@else if $value2 and ($value1 != 0 or $value2 != 0) {
+
+		#{$property}: _stripZero($value1 + px) _stripZero($value2 + px);
+		#{$property}: _stripZero($value1 / 16 + rem) _stripZero($value2 / 16 + rem);
+	}
+
+	@else if $value1 and $value1 != 0 {
+
+		#{$property}: _stripZero($value1 + px);
+		#{$property}: _stripZero($value1 / 16 + rem);
+	}
+}

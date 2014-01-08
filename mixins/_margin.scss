@@ -1,0 +1,24 @@
+@mixin margin($value1, $value2: false, $value3: false, $value4: false) {
+
+	@include _shorthand(margin, $value1, $value2, $value3, $value4);
+}
+
+@mixin margin-top($value) {
+
+	@include _shorthand(margin-top, $value);
+}
+
+@mixin margin-right($value) {
+
+	@include _shorthand(margin-right, $value);
+}
+
+@mixin margin-bottom($value) {
+
+	@include _shorthand(margin-bottom, $value);
+}
+
+@mixin margin-left($value) {
+
+	@include _shorthand(margin-left, $value);
+}

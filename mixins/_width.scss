@@ -1,0 +1,14 @@
+@mixin width($value) {
+
+	@include _shorthand(width, $value);
+}
+
+@mixin min-width($value) {
+
+	@include _shorthand(min-width, $value);
+}
+
+@mixin max-width($value) {
+
+	@include _shorthand(max-width, $value);
+}

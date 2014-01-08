@@ -1,0 +1,26 @@
+@mixin adjust-font-size($size: $base-font-size-px, $height: 1) {
+
+	font-size: _stripZero($size + px);
+	font-size: _stripZero($size / 16 + rem);
+	line-height: ceil($base-spacing * $height / $size * 16 * 100000) / 100000;
+}
+
+@mixin font-size($value) {
+
+	@include _shorthand(font-size, $value);
+}
+
+@mixin line-height($value) {
+
+	@include _shorthand(line-height, $value);
+}
+
+@mixin letter-spacing($value) {
+
+	@include _shorthand(letter-spacing, $value);
+}
+
+@mixin text-indent($value) {
+
+	@include _shorthand(text-indent, $value);
+}

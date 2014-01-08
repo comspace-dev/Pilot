@@ -1,0 +1,14 @@
+@mixin height($value) {
+
+	@include _shorthand(height, $value);
+}
+
+@mixin min-height($value) {
+
+	@include _shorthand(min-height, $value);
+}
+
+@mixin max-height($value) {
+
+	@include _shorthand(max-height, $value);
+}

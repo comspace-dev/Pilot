@@ -1,0 +1,14 @@
+@mixin box-shadow($h-off: 2, $v-off: 2, $blur: 4, $spread: 0, $color: rgba(0,0,0,0.5), $inset: false) {
+
+	@if $inset {
+
+		box-shadow: _stripZero($h-off + px) _stripZero($v-off + px) _stripZero($blur + px) _stripZero($spread + px) $color inset;
+		box-shadow: _stripZero($h-off / 16 + rem) _stripZero($v-off / 16 + rem) _stripZero($blur / 16 + rem) _stripZero($spread / 16 + rem) $color inset;
+	}
+
+	@else {
+
+		box-shadow: _stripZero($h-off + px) _stripZero($v-off + px) _stripZero($blur + px) _stripZero($spread + px) $color;
+		box-shadow: _stripZero($h-off / 16 + rem) _stripZero($v-off / 16 + rem) _stripZero($blur / 16 + rem) _stripZero($spread / 16 + rem) $color;
+	}
+}

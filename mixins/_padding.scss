@@ -1,0 +1,24 @@
+@mixin padding($value1, $value2: false, $value3: false, $value4: false) {
+
+	@include _shorthand(padding, $value1, $value2, $value3, $value4);
+}
+
+@mixin padding-top($value) {
+
+	@include _shorthand(padding-top, $value);
+}
+
+@mixin padding-right($value) {
+
+	@include _shorthand(padding-right, $value);
+}
+
+@mixin padding-bottom($value) {
+
+	@include _shorthand(padding-bottom, $value);
+}
+
+@mixin padding-left($value) {
+
+	@include _shorthand(padding-left, $value);
+}

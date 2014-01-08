@@ -1,0 +1,30 @@
+@mixin _border($value, $style, $color, $side: "") {
+
+	border#{$side}: _stripZero($value + px) $style #{$color};
+	border#{$side}: _stripZero($value / 16 + rem) $style #{$color};
+}
+
+@mixin border($value: 1, $style: solid, $color: "") {
+
+	@include _border($value, $style, $color);
+}
+
+@mixin border-top($value: 1, $style: solid, $color: "") {
+
+	@include _border($value, $style, $color, "-top");
+}
+
+@mixin border-right($value: 1, $style: solid, $color: "") {
+
+	@include _border($value, $style, $color, "-right");
+}
+
+@mixin border-bottom($value: 1, $style: solid, $color: "") {
+
+	@include _border($value, $style, $color, "-bottom");
+}
+
+@mixin border-left($value: 1, $style: solid, $color: "") {
+
+	@include _border($value, $style, $color, "-left");
+}

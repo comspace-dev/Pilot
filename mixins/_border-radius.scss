@@ -1,0 +1,24 @@
+@mixin border-radius($value1, $value2: false, $value3: false, $value4: false) {
+
+	@include _shorthand(border-radius, $value1, $value2, $value3, $value4);
+}
+
+@mixin border-top-right-radius($value) {
+
+	@include _shorthand(border-top-right-radius, $value);
+}
+
+@mixin border-bottom-right-radius($value) {
+
+	@include _shorthand(border-bottom-right-radius, $value);
+}
+
+@mixin border-bottom-left-radius($value) {
+
+	@include _shorthand(border-bottom-left-radius, $value);
+}
+
+@mixin border-top-left-radius($value) {
+
+	@include _shorthand(border-top-left-radius, $value);
+}

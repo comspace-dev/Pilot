@@ -1,0 +1,14 @@
+@mixin leading() {
+
+	@include margin-top($base-spacing-px);
+}
+
+@mixin leading--half() {
+
+	@include margin-top($base-spacing-px / 2);
+}
+
+@mixin leading--quarter() {
+
+	@include margin-top($base-spacing-px / 4);
+}

@@ -1,0 +1,19 @@
+@mixin top($value) {
+
+	@include _shorthand(top, $value);
+}
+
+@mixin right($value) {
+
+	@include _shorthand(right, $value);
+}
+
+@mixin bottom($value) {
+
+	@include _shorthand(bottom, $value);
+}
+
+@mixin left($value) {
+
+	@include _shorthand(left, $value);
+}

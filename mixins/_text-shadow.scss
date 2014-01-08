@@ -1,0 +1,5 @@
+@mixin text-shadow($h-off: 1, $v-off: 1, $blur: 2, $color: rgba(0,0,0,0.5)) {
+
+	text-shadow: _stripZero($h-off + px) _stripZero($v-off + px) _stripZero($blur + px) $color;
+	text-shadow: _stripZero($h-off / 16 + rem) _stripZero($v-off / 16 + rem) _stripZero($blur / 16 + rem) $color;
+}
