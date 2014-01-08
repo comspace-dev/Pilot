@@ -1,0 +1,7 @@
+// defaults needed for calculations
+$base-font-size-px: 16 !default;
+$base-spacing-px: 24 !default;
+
+// calculations done with the defaults
+$base-font-size: $base-font-size-px / 16;
+$base-spacing: $base-spacing-px / 16;
