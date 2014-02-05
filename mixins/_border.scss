@@ -28,3 +28,8 @@
 
 	@include _border($value, $style, $color, "-left");
 }
+
+@mixin border-spacing($value1, $value2: false) {
+
+	@include _shorthand(border-spacing, $value1, $value2);
+}
