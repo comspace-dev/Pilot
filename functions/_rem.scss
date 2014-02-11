@@ -1,0 +1,5 @@
+// convert to rem
+@function _rem($value) {
+
+	@return ($value / $root-font-size-px) + rem;
+}

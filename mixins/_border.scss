@@ -1,7 +1,7 @@
 @mixin _border($value, $style, $color, $side: "") {
 
 	border#{$side}: _stripZero($value + px) $style #{$color};
-	border#{$side}: _stripZero($value / 16 + rem) $style #{$color};
+	border#{$side}: _stripZero(_rem($value)) $style #{$color};
 }
 
 @mixin border($value: 1, $style: solid, $color: "") {

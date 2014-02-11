@@ -1,7 +1,10 @@
+// root font size
+$root-font-size-px: 16 !default;
+
 // defaults needed for calculations
-$base-font-size-px: 16 !default;
-$base-spacing-px: 24 !default;
+$base-font-size-px: $root-font-size-px !default;
+$base-spacing-px: $root-font-size-px * 1.5 !default;
 
 // calculations done with the defaults
-$base-font-size: $base-font-size-px / 16;
-$base-spacing: $base-spacing-px / 16;
+$base-font-size: $base-font-size-px / $root-font-size-px;
+$base-spacing: $base-spacing-px / $root-font-size-px;

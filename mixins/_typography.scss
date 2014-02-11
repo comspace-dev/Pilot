@@ -1,8 +1,8 @@
 @mixin adjust-font-size($size: $base-font-size-px, $height: 1) {
 
 	font-size: _stripZero($size + px);
-	font-size: _stripZero($size / 16 + rem);
-	line-height: ceil($base-spacing * $height / $size * 16 * 100000) / 100000;
+	font-size: _stripZero(_rem($size));
+	line-height: ceil($base-spacing * $height / $size * $root-font-size-px * 100000) / 100000;
 }
 
 @mixin font-size($value) {
